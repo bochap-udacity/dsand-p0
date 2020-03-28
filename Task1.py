@@ -118,5 +118,4 @@ def testAll():
     testGetUniqueCallNumbersCount()
 
 
-testAll()
 printUniqueNumber(texts, calls)

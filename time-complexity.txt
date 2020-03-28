@@ -1,0 +1,47 @@
+Task 0
+
+The worst case time-complexity for this task is  O(1) x number of operations (6). 
+So it will be O(6) but ignoring constants it will have the order of O(1). 
+This assumes that the meta operations used for breaking the code into multiple 
+functions are not considered.
+
+Task 1
+
+Using n as the number of records for texts and m for number of records in calls.
+The worst case time-complexity for this task will be the total of 
+i. O(n) X 4 + O(1) for getUniqueMessageNumbersCount
+ii. O(m) X 4 + O(1) for getUniqueCallNumbersCount
+ii O(1) x 2 for printUniqueNumber
+This brings a total of O(4n) + O(4n) + O(4) but ignoring constants it will have the order of O(n) + O(m). 
+This assumes that the meta operations used for breaking the code into multiple 
+functions are not considered.
+
+Task 2
+Assuming n to be number of records in calls.
+The worst case time-complexity for this task will be the total of 
+i. O(1) X 3 + O(n) X 13 for getNumberWithHighestDuration
+ii. O(1) for printLongestCall
+his brings a total of O(4) + O(13n) but ignoring constants it will have the order of O(n). 
+This assumes that the meta operations used for breaking the code into multiple 
+functions are not considered.
+
+Task 3
+Assuming n to be number of records in calls.
+The worst case time-complexity for this task will be the total of 
+i. O(1) X 4 + O(n) X (6 + 2 X O(5)) getBangaloreCallDetails
+  a. O(5) worst case for getCallingCodes
+ii. O(1) X 3 + O(n log n) for printBangaloreCallDetails
+This brings a total of O(7) + O(16n) + O(n log n) but ignoring constants and less significant orders it will have the order of O(n) + O(n log n). 
+This assumes that the meta operations used for breaking the code into multiple 
+functions are not considered.
+
+Task 4
+Using n as the number of records for texts and m for number of records in calls.
+The worst case time-complexity for this task will be the total of 
+i. O(1) X 3 + O(m) X 7 getTelemarketerCallNumber
+ii. O(1) X 3 + 0(n) X 3  for removeMessageNumberForTelemarketerNumbers
+iii. O(1) X 2 + O(m log m)
+This brings a total of O(8) + O(7m) + O(3n) + O(m log m) but ignoring constants and less significant orders it will have the order of + O(m) + O(n) + O(m log m). 
+This assumes that the meta operations used for breaking the code into multiple 
+functions are not considered.
+
