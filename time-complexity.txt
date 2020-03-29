@@ -31,9 +31,8 @@ The worst case time-complexity for this task will be the total of
 i. O(1) X 4 + O(n) X (6 + 2 X O(5)) getBangaloreCallDetails
   a. O(5) worst case for getCallingCodes
 ii. O(1) X 3 + O(n log n) for printBangaloreCallDetails
-This brings a total of O(7) + O(16n) + O(n log n) but ignoring constants and less significant orders it will have the order of O(n) + O(n log n). 
-This assumes that the meta operations used for breaking the code into multiple 
-functions are not considered.
+This brings a total of O(7) + O(16n) + O(n log n) but ignoring constants and less significant orders it will have the order of O(n). 
+This assumes that the meta operations used for breaking the code into multiple functions are not considered.
 
 Task 4
 Using n as the number of records for texts and m for number of records in calls.
@@ -41,7 +40,6 @@ The worst case time-complexity for this task will be the total of
 i. O(1) X 3 + O(m) X 7 getTelemarketerCallNumber
 ii. O(1) X 3 + 0(n) X 3  for removeMessageNumberForTelemarketerNumbers
 iii. O(1) X 2 + O(m log m)
-This brings a total of O(8) + O(7m) + O(3n) + O(m log m) but ignoring constants and less significant orders it will have the order of + O(m) + O(n) + O(m log m). 
-This assumes that the meta operations used for breaking the code into multiple 
-functions are not considered.
+This brings a total of O(8) + O(7m) + O(3n) + O(m log m) but ignoring constants and less significant orders it will have the order of O(m) + O(n). 
+This assumes that the meta operations used for breaking the code into multiple functions are not considered.
 

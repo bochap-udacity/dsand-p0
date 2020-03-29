@@ -126,7 +126,8 @@ def printTelemarketerNumbers():
     numbers = getTelemarketerCallNumber(calls)
     numbers = removeMessageNumberForTelemarketerNumbers(texts, numbers)
     print("These numbers could be telemarketers: ")
-    print(sorted(numbers))
+    for number in sorted(numbers):
+        print(number)
 
 
 printTelemarketerNumbers()

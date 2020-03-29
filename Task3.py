@@ -60,22 +60,24 @@ def getCallingCodes(phoneNumber):
     """
     if phoneNumber.startswith("140"):
         return "140"
-    if phoneNumber.startswith("7"):
-        return "7"
-    if phoneNumber.startswith("8"):
-        return "8"
-    if phoneNumber.startswith("9"):
-        return "9"
-    return phoneNumber[1:4]
+    if (
+        phoneNumber.startswith("7")
+        or phoneNumber.startswith("8")
+        or phoneNumber.startswith("9")
+    ):
+        return phoneNumber[0:4]
+
+    return phoneNumber[0 : phoneNumber.index(")") + 1]
 
 
 def testGetCallingCodes():
-    assert getCallingCodes("(080)62164823") == "080"
-    assert getCallingCodes("(022)47410783") == "022"
+    assert getCallingCodes("(080)62164823") == "(080)"
+    assert getCallingCodes("(0821)3602212") == "(0821)"
+    assert getCallingCodes("(04344)322628") == "(04344)"
     assert getCallingCodes("1408371942") == "140"
-    assert getCallingCodes("78130 00821") == "7"
-    assert getCallingCodes("89071 31755") == "8"
-    assert getCallingCodes("98446 66723") == "9"
+    assert getCallingCodes("78130 00821") == "7813"
+    assert getCallingCodes("89071 31755") == "8907"
+    assert getCallingCodes("98446 66723") == "9844"
 
     print("getCallingCodes testing completed.")
 
@@ -84,7 +86,7 @@ def isBangaloreCallingCode(callingCode):
     """
         Helper function that checks if the callingCode is a Bangalore number (080)
     """
-    return callingCode == "080"
+    return callingCode == "(080)"
 
 
 def getBangaloreCallDetails(data):
@@ -109,8 +111,8 @@ def getBangaloreCallDetails(data):
 
 
 def testIsBangaloreCallingCode():
-    assert isBangaloreCallingCode("080") == True
-    assert isBangaloreCallingCode("9") == False
+    assert isBangaloreCallingCode("(080)") == True
+    assert isBangaloreCallingCode("7406") == False
     print("getBangaloreCallDetails testing completed.")
 
 
@@ -119,13 +121,13 @@ def testGetBangaloreCallDetails():
     totalCount, localCallCount, callingCodes = getBangaloreCallDetails(data)
     assert totalCount == 1
     assert localCallCount == 1
-    assert callingCodes == set({"080"})
+    assert callingCodes == set({"(080)"})
 
     data = [["(080)62164823", "74066 93594", "01-09-2016 06:52:07", "300"]]
     totalCount, localCallCount, callingCodes = getBangaloreCallDetails(data)
     assert totalCount == 1
     assert localCallCount == 0
-    assert callingCodes == set({"7"})
+    assert callingCodes == set({"7406"})
 
     data = [
         ["(080)62164823", "74066 93594", "01-09-2016 06:52:07", "300"],
@@ -134,7 +136,7 @@ def testGetBangaloreCallDetails():
     totalCount, localCallCount, callingCodes = getBangaloreCallDetails(data)
     assert totalCount == 2
     assert localCallCount == 0
-    assert callingCodes == set({"7", "8"})
+    assert callingCodes == set({"7406", "8151"})
 
     data = [
         ["(080)62164823", "74066 93594", "01-09-2016 06:52:07", "300"],
@@ -144,7 +146,7 @@ def testGetBangaloreCallDetails():
     totalCount, localCallCount, callingCodes = getBangaloreCallDetails(data)
     assert totalCount == 3
     assert localCallCount == 0
-    assert callingCodes == set({"7", "8", "9"})
+    assert callingCodes == set({"7406", "8151", "9844"})
 
     data = [
         ["(080)62164823", "74066 93594", "01-09-2016 06:52:07", "300"],
@@ -155,7 +157,7 @@ def testGetBangaloreCallDetails():
     totalCount, localCallCount, callingCodes = getBangaloreCallDetails(data)
     assert totalCount == 3
     assert localCallCount == 0
-    assert callingCodes == set({"7", "8", "9"})
+    assert callingCodes == set({"7406", "8151", "9844"})
 
     print("getBangaloreCallDetails testing completed.")
 
@@ -170,10 +172,12 @@ def printBangaloreCallDetails():
     totalCount, localCallCount, callingCodes = getBangaloreCallDetails(calls)
 
     print("The numbers called by people in Bangalore have codes:")
-    print(sorted(callingCodes))
+    for callingCode in sorted(callingCodes):
+        print(callingCode)
+
     print(
         "{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(
-            localCallCount / totalCount
+            (localCallCount / totalCount) * 100
         )
     )
 
